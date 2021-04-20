@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import firebase from "firebase/app";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
@@ -17,13 +17,13 @@ if (!firebase.apps.length) {
     firebase.app(); // if already initialized, use that one
 }
 
-const Login = () => {
+const  Login = () => {
     const  history = useHistory();
     const location = useLocation();
     const { from } = location.state || { from: { pathname: "/" } };
-    console.log(from)
     const [loggedInUser,setLoggedInUser]=useContext(UserContext)
     const provider = new firebase.auth.GoogleAuthProvider();
+
     const logInWithGoogle=()=>{
         
         firebase.auth()
@@ -41,6 +41,17 @@ const Login = () => {
                     email:user.email,
                     img:user.photoURL
                 };
+                    fetch("https://expressclean.herokuapp.com/checkIsAdmin", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ email: user.email })
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            sessionStorage.setItem("admin", data)
+                        })
+
+
                 sessionStorage.setItem("email",user.email)
                 
                 setLoggedInUser(newUser); 
@@ -58,10 +69,8 @@ const Login = () => {
                 var credential = error.credential;
                 // ...
             });
-            
         
     }
-    console.log(loggedInUser);
 
     return (
         

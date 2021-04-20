@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../../../App';
 import Blog from '../../Blog/Blog';
 import Footer from '../../Shared/Footer/Footer';
 import Header from '../Header/Header';
@@ -10,6 +11,7 @@ import Testimonial from '../Testimonial/Testimonial';
 // import "react-datetime/css/react-datetime.css";
 
 const Home = () => {
+    const [loggedInUser,setLoggedInUser]=useContext(UserContext)
     return (
        <section>
            <div>

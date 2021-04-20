@@ -6,7 +6,7 @@ const Team = () => {
     const [employeeType, setEmployeeType] = useState([])
     const [services,setServices]=useState([])
     useEffect(()=>{
-        fetch("http://localhost:5500/allMember")
+        fetch("https://expressclean.herokuapp.com/allMember")
         .then(res=>res.json())
         .then(data=>setServices(data))
     },[])

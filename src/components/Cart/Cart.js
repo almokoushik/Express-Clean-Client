@@ -118,7 +118,7 @@ const Cart = () => {
     //Get a Single Product by id from database
 
     useEffect(()=>{
-        fetch(`http://localhost:5500/specificProduct/${id.id}`)
+        fetch(`https://expressclean.herokuapp.com/specificProduct/${id.id}`)
         .then(res=>res.json())
         .then(data=>{
             console.log(data)

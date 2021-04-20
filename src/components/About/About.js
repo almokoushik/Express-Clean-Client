@@ -16,9 +16,8 @@ const About = () => {
                 spec: data.suggestion,
                 file: img,
             }
-            console.log("This is New Data", newData)
 
-            fetch("http://localhost:5500/addReview", {
+            fetch("https://expressclean.herokuapp.com/addReview", {
                 method: "Post",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newData)

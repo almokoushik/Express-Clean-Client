@@ -1,16 +1,18 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../App';
 import BlogPost from '../BlogPost/BlogPost';
 import NavBar from '../Home/Navbar/NavBar';
 import Footer from '../Shared/Footer/Footer';
 import BlogCard from './BlogCard/BlogCard';
 
 const BlogPage = () => {
+    const [loggedInUser,setLoggedInUser]=useContext(UserContext)
 
     //This PAge will SHow all The Blog Posts
     const [services, setServices] = useState([])
     useEffect(() => {
-        fetch("http://localhost:5500/allBlog")
+        fetch("https://expressclean.herokuapp.com/allBlog")
             .then(res => res.json())
             .then(data => {
                 console.log(data.length)
@@ -19,6 +21,7 @@ const BlogPage = () => {
             .catch(err => console.log(err))
 
     }, [])
+    console.log("This is BLOG and loggedInUser",loggedInUser)
     return (
         <div>
             <NavBar></NavBar>

@@ -34,7 +34,7 @@ const DropDown=({id,status})=> {
     };
 
     const handleBlur=()=>{
-        fetch("http://localhost:5500/updateOrder",{ 
+        fetch("https://expressclean.herokuapp.com/updateOrder",{ 
             method: "POST",
             headers:{"Content-Type": "application/json"},
             body: JSON.stringify({id:id,status:stat})

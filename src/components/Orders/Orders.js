@@ -69,7 +69,7 @@ const Orders = () => {
     const [orders,setOrders]=useState([])
 
     useEffect(() => {
-        fetch("http://localhost:5500/ordersByEmail",{
+        fetch("https://expressclean.herokuapp.com/ordersByEmail",{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({email:userEmail})

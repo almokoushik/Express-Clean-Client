@@ -32,7 +32,7 @@ const AddBlog = () => {
                 file: img,
             }
 
-            fetch("http://localhost:5500/addBlog", {
+            fetch("https://expressclean.herokuapp.com/addBlog", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newData)

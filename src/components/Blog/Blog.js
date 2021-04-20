@@ -6,7 +6,7 @@ const Blog = () => {
     //This PAge will SHow all The Blog Posts
     const [services, setServices] = useState([])
     useEffect(() => {
-        fetch("http://localhost:5500/allBlog")
+        fetch("https://expressclean.herokuapp.com/allBlog")
             .then(res => res.json())
             .then(data => {
                 setServices(data)

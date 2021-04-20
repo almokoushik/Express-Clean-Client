@@ -6,7 +6,7 @@ import { Button, Form } from 'react-bootstrap';
 const AddAdmin = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
-        fetch("http://localhost:5500/addAdmin",{
+        fetch("https://expressclean.herokuapp.com/addAdmin",{
             method:"POST",
             headers:{"Content-Type":"Application/json"},
             body:JSON.stringify(data)

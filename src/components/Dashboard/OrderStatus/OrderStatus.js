@@ -66,7 +66,7 @@ const OrderStatus = () => {
     const classes = useStyles();
     const [allorders,setAllOrders]=useState([])
     useEffect(()=>{
-        fetch("http://localhost:5500/allOrders")
+        fetch("https://expressclean.herokuapp.com/allOrders")
         .then(res=>res.json())
         .then(data=>{
             setAllOrders(data)

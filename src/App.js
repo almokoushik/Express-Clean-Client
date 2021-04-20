@@ -1,6 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -24,13 +24,15 @@ import OrderStatus from './components/Dashboard/OrderStatus/OrderStatus';
 import AddAdmin from './components/Dashboard/AddAdmin/AddAdmin';
 import CheckOut from './components/CheckOut/CheckOut';
 import BlogPage from './components/BlogPage/BlogPage';
-export const UserContext = createContext(null)
+export const UserContext = createContext()
+
 function App() {
-  const [loggedInUser,setLoggedInUser]=useState({
-    name:"",
-    email:"",
-    img:""
-  }) 
+  const [loggedInUser, setLoggedInUser] = useState({
+    name: "",
+    email: "",
+    img: ""
+  })
+
   return (
     <UserContext.Provider value={[loggedInUser,setLoggedInUser]}>
     <Router>

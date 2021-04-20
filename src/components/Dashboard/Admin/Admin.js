@@ -1,20 +1,52 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AdminNav from '../AdminNav/AdminNav';
 import { useForm } from "react-hook-form";
 import { Button, Form } from 'react-bootstrap';
 import AddSingleMember from './AddSingleMember';
 import { useHistory } from 'react-router';
+import { UserContext } from '../../../App';
 const axios = require('axios');
 
 const Admin = () => {
+
     const history=useHistory()
     let [admin, setAdmin] = useState(false)
     const [img, setImg] = useState("")
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [member,setMember]=useState([])
 
+
+    //SessionStorage Can save Time Sometimes
+    
+
+    // const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+    // const [isAdmin, setIsAdmin] = useState(false)
+
+    // if (!loggedInUser.email) {
+    //     const newUser = {
+    //         email: sessionStorage.getItem("email")
+    //     }
+    //     setLoggedInUser(newUser)
+    // }
+
+    // useEffect(() => {
+    //     fetch("https://expressclean.herokuapp.com/checkIsAdmin", {
+    //         method: "POST",
+    //         headers: { "Content-Type": "application/json" },
+    //         body: JSON.stringify({ email: loggedInUser.email })
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setIsAdmin(data)
+    //             setAdmin(data)
+    //         })
+    // }, [loggedInUser.email])
+    const isAdmin=sessionStorage.getItem("admin")
+    // console.log("This is from Admin",isAdmin)
+
+
     useEffect(()=>{
-        fetch("http://localhost:5500/allMember")
+        fetch("https://expressclean.herokuapp.com/allMember")
         .then(res=>res.json())
         .then(data=>setMember(data))
         .catch(err=>console.log(err))
@@ -29,7 +61,7 @@ const Admin = () => {
             }
             console.log("This is New Data", newData)
 
-            fetch("http://localhost:5500/addMember", {
+            fetch("https://expressclean.herokuapp.com/addMember", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newData)
@@ -42,7 +74,7 @@ const Admin = () => {
                 })
                 .catch(err => console.log(err))
 
-                history.push("/admin")
+                // history.push("/admin")
         }
     };
 
@@ -63,8 +95,8 @@ const Admin = () => {
 
     return (
         <div >
-            <AdminNav admin={admin}></AdminNav>
-            <div style={{ display: (admin === true) ? "block" : "None" }}>
+            <AdminNav ></AdminNav>
+            <div style={{ display: (isAdmin==="true") ? "block" : "none" }}>
                 <div className=" row d-flex justify-content-center">
                     <div className="col-md-4">
                         <div className="d-flex justify-content-center">
@@ -92,7 +124,7 @@ const Admin = () => {
                     <div className="col-md-7 my-5">
                         <div className="row d-flex justify-content-center">
                             {
-                                member.map(service=><AddSingleMember key={service._id} service={service}></AddSingleMember>)
+                                member.map(service => <AddSingleMember key={service._id} service={service}></AddSingleMember>)
                             }
 
                         </div>

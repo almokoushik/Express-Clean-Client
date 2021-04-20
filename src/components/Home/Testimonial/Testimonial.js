@@ -4,7 +4,7 @@ import Testimony from '../Testimony/Testimony';
 const Testimonial = () => {
     const [services,setServices] = useState([])
     useEffect(()=>{
-        fetch("http://localhost:5500/allReview")
+        fetch("https://expressclean.herokuapp.com/allReview")
         .then(res=>res.json())
         .then(data=>{
             setServices(data)

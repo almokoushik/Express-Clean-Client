@@ -6,7 +6,7 @@ const OurServices = () => {
     const [services,setServices]=useState([])
 
     useEffect(()=>{
-        fetch("http://localhost:5500/allProduct")
+        fetch("https://expressclean.herokuapp.com/allProduct")
         .then(res=>res.json())
         .then(data=>setServices(data))
         .catch(err=>console.log(err))

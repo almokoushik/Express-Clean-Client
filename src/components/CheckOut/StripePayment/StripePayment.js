@@ -64,7 +64,7 @@ const StripePayment = ({id}) => {
             card: elements.getElement(CardNumberElement)
         });
         if (payload.paymentMethod) {
-            fetch(`http://localhost:5500/specificProduct/${id.id}`)
+            fetch(`https://expressclean.herokuapp.com/specificProduct/${id.id}`)
                 .then(res => res.json())
                 .then(data => {
                    const newUser={
@@ -76,7 +76,7 @@ const StripePayment = ({id}) => {
                     newUser.email=userMail
                     newUser.time=date
 
-                    fetch("http://localhost:5500/orderPlace",{
+                    fetch("https://expressclean.herokuapp.com/orderPlace",{
                         method:"POST",
                         headers:{"Content-Type":"application/json"},
                         body:JSON.stringify(newUser)
